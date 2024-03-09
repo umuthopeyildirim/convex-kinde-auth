@@ -1,6 +1,6 @@
 {
-  "name": "@convex-dev/convex-kinde-auth",
-  "version": "0.0.4",
+  "name": "@umuthopeyildirim/convex-kinde-auth",
+  "version": "0.0.5",
   "description": "Convex database adapter for Kinde Auth",
   "homepage": "https://convex.dev/",
   "repository": "https://github.com/get-convex/convex-kinde-auth",
@@ -22,7 +22,7 @@
     "README.md"
   ],
   "exports": {
-    "./react": {
+    ".": {
       "types": "./src/react.tsx",
       "import": "./esm/react.js",
       "require": "./cjs/react.js"
