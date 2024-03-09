@@ -1,6 +1,6 @@
 # Convex Database Adapter for Kinde Auth
 
-This library enables authentication built entirely on top of Convex without any third-party platform. It uses [Kinde](https://kinde.com) for the authentication logic.
+This library facilitates authentication seamlessly integrated with Convex. It leverages [Kinde](https://kinde.com) for the authentication mechanisms.
 
 ![LoginScreenshot](./assets/login.png)
 
