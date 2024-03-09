@@ -2,12 +2,84 @@
 
 This library enables authentication built entirely on top of Convex without any third-party platform. It uses [Kinde](https://kinde.com) for the authentication logic.
 
-## Todo
+![LoginScreenshot](./assets/login.png)
 
-- [ ] Add Screenshot
-- [ ] Create Docs
-- [ ] Create NPM package
-- [ ] Update the demo after the release of the NPM package
+## Installation
+
+Note: This package is not published by Convex or Kinde. We will update it as soon as we publish it.
+
+```bash
+npm install @umuthopeyildirim/convex-kinde-auth
+```
+
+```bash
+yarn add @umuthopeyildirim/convex-kinde-auth
+```
+
+```bash
+pnpm add @umuthopeyildirim/convex-kinde-auth
+```
+
+## Usage
+
+### Create .env file
+
+Get your Kinde credentials from the kinde application (make sure you created a React single page app) and paste it to env file.
+
+```env
+VITE_KINDE_CLIENT_ID=your_kinde_client_id
+VITE_KINDE_DOMAIN=https://your_subdomain.kinde.com
+VITE_KINDE_REDIRECT_URL=http://localhost:3000
+VITE_KINDE_LOGOUT_URL=http://localhost:3000
+VITE_KINDE_AUDIENCE="convex"
+
+# Deployment used by `pnpm convex dev`
+CONVEX_DEPLOYMENT=
+VITE_CONVEX_URL=
+```
+
+```javascript
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { KindeProvider } from "@kinde-oss/kinde-auth-react";
+import { ConvexReactClient } from "convex/react";
+import { ConvexProviderWithKinde } from "@umuthopeyildirim/convex-kinde-auth";
+import App from "./App.jsx";
+import "./index.css";
+
+const convex = new ConvexReactClient(import.meta.env.VITE_CONVEX_URL);
+console.log(import.meta.env.VITE_KINDE_LOGOUT_URI);
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
+    <KindeProvider
+      clientId={import.meta.env.VITE_KINDE_CLIENT_ID}
+      domain={import.meta.env.VITE_KINDE_DOMAIN}
+      logoutUri={import.meta.env.VITE_KINDE_LOGOUT_URI}
+      redirectUri={import.meta.env.VITE_KINDE_REDIRECT_URI}
+      audience="convex"
+      isDangerouslyUseLocalStorage={true}
+    >
+      <ConvexProviderWithKinde client={convex}>
+        <App />
+      </ConvexProviderWithKinde>
+    </KindeProvider>
+  </React.StrictMode>
+);
+```
+
+# What is Kinde?
+
+[Kinde](https://kinde.com) is a comprehensive authentication solution designed to simplify and secure user authentication processes for web applications. It offers a range of features and functionalities to streamline authentication workflows, enhance security, and provide a seamless user experience.
+
+With Kinde, developers can easily integrate authentication into their applications, allowing users to securely log in, register, and manage their accounts. Kinde supports various authentication methods, including email/password, social login (e.g., Google, Facebook), and more, catering to diverse user preferences and requirements.
+
+One of the key features of Kinde is its flexibility and customization options. Developers can tailor the authentication process to fit their specific application requirements, adjusting settings such as password policies, account verification methods, and multi-factor authentication configurations.
+
+Kinde prioritizes security and compliance, implementing industry-standard security protocols and best practices to protect user data and prevent unauthorized access. It offers features such as secure password hashing, JWT (JSON Web Token) authentication, and session management to safeguard user accounts and sensitive information.
+
+If you’re a founder with a new idea and want to get up and going quickly, this is a great place to start. Conversely, if you already have a project underway, consider using one of the [Kinde SDKs](https://github.com/kinde-oss).
+
+Consider using one of our [Kinde starter kits](https://github.com/kinde-starter-kits) if you’re starting from scratch.
 
 # What is Convex?
 
